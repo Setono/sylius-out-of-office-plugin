@@ -1,0 +1,8 @@
+{% set period = setono_sylius_out_of_office_active_period() %}
+
+{% if period is not null and period.showOnProductPage and period.productMessage is not empty %}
+    <div class="setono-out-of-office-notice setono-out-of-office-notice--product"
+         style="margin: 1rem 0; padding: .75rem 1rem; background: #fff3cd; color: #664d03; border-radius: .25rem;">
+        {{ period.productMessage }}
+    </div>
+{% endif %}

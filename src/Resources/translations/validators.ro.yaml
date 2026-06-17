@@ -1,0 +1,11 @@
+setono_sylius_out_of_office:
+    out_of_office_period:
+        name:
+            not_blank: 'Vă rugăm să introduceți un nume.'
+        ends_at:
+            greater_than_or_equal_starts_at: 'Data de sfârșit trebuie să fie egală sau ulterioară datei de început.'
+        placements:
+            at_least_one: 'Activați cel puțin o amplasare (bara superioară, pagina de produs sau finalizarea comenzii).'
+    out_of_office_period_translation:
+        message:
+            at_least_one: 'Vă rugăm să completați cel puțin un mesaj.'

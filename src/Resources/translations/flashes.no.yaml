@@ -1,0 +1,3 @@
+setono_sylius_out_of_office:
+    checkout:
+        disabled: 'Bestilling er for øyeblikket satt på pause fordi butikken er fraværende.'

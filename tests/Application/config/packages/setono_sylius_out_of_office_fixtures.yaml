@@ -1,0 +1,17 @@
+sylius_fixtures:
+    suites:
+        default:
+            fixtures:
+                setono_out_of_office_period:
+                    options:
+                        custom:
+                            -
+                                name: 'Summer holiday'
+                                enabled: true
+                                starts_at: '-1 day'
+                                ends_at: '+14 days'
+                                dismissible: true
+                                checkout_behavior: 'allow'
+                                top_bar_message: "We're on holiday — orders placed now will ship when we're back."
+                                product_message: 'Heads up: we are away, so dispatch is delayed.'
+                                checkout_message: 'Note: your order will ship after our holiday ends.'

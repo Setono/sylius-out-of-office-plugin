@@ -1,0 +1,11 @@
+setono_sylius_out_of_office:
+    out_of_office_period:
+        name:
+            not_blank: 'Please enter a name.'
+        ends_at:
+            greater_than_or_equal_starts_at: 'The end date must be the same as or later than the start date.'
+        placements:
+            at_least_one: 'Enable at least one placement (top bar, product page or checkout).'
+    out_of_office_period_translation:
+        message:
+            at_least_one: 'Please fill in at least one message.'

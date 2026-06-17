@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 namespace Setono\SyliusOutOfOfficePlugin\Tests\DependencyInjection;
 
-use Setono\SyliusOutOfOfficePlugin\DependencyInjection\Configuration;
 use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
 use PHPUnit\Framework\TestCase;
+use Setono\SyliusOutOfOfficePlugin\DependencyInjection\Configuration;
 
-/**
- * See examples of tests and configuration options here: https://github.com/SymfonyTest/SymfonyConfigTest
- */
 final class ConfigurationTest extends TestCase
 {
     use ConfigurationTestCaseTrait;
@@ -23,27 +20,19 @@ final class ConfigurationTest extends TestCase
     /**
      * @test
      */
-    public function values_are_invalid_if_required_value_is_not_provided(): void
+    public function it_is_valid_without_any_configuration(): void
     {
-        $this->assertConfigurationIsInvalid(
-            [
-                [], // no values at all
-            ],
-            '/The child (config|node) "option" (under|at path) "setono_sylius_out_of_office" must be configured/',
-            true,
-        );
+        $this->assertConfigurationIsValid([[]]);
     }
 
     /**
      * @test
      */
-    public function processed_value_contains_required_value(): void
+    public function it_does_not_allow_a_blank_cookie_prefix(): void
     {
-        $this->assertProcessedConfigurationEquals([
-            ['option' => 'first value'],
-            ['option' => 'last value'],
-        ], [
-            'option' => 'last value',
-        ]);
+        $this->assertPartialConfigurationIsInvalid(
+            [['dismissal' => ['cookie_prefix' => '']]],
+            'dismissal.cookie_prefix',
+        );
     }
 }

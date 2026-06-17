@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+
+    <entity name="Setono\SyliusOutOfOfficePlugin\Model\OutOfOfficePeriodTranslation" table="setono_sylius_out_of_office_period_translation">
+        <id name="id" column="id" type="integer">
+            <generator strategy="AUTO" />
+        </id>
+
+        <field name="topBarMessage" column="top_bar_message" type="text" nullable="true" />
+        <field name="productMessage" column="product_message" type="text" nullable="true" />
+        <field name="checkoutMessage" column="checkout_message" type="text" nullable="true" />
+    </entity>
+
+</doctrine-mapping>

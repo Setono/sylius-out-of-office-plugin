@@ -7,6 +7,7 @@ parameters:
 
     excludePaths:
         - tests/Application/*
+        - src/Migrations/*
 
     bootstrapFiles:
         - vendor/autoload.php
@@ -22,3 +23,15 @@ parameters:
 
     reportUnmatchedIgnoredErrors: false
     treatPhpDocTypesAsCertain: false
+
+    ignoreErrors:
+        # The channels collection is typed against the base ChannelInterface (as required by
+        # ChannelsAwareInterface), while Doctrine resolves the association to the concrete Channel.
+        -
+            identifier: doctrine.associationType
+            path: src/Model/OutOfOfficePeriod.php
+        # Sylius' EntityRepository pins RepositoryInterface<ResourceInterface>, which conflicts with
+        # our precise RepositoryInterface<OutOfOfficePeriodInterface> on the concrete repository.
+        -
+            identifier: generics.interfaceConflict
+            path: src/Doctrine/ORM/OutOfOfficePeriodRepository.php

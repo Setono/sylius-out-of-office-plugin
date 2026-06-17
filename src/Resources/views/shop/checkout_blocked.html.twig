@@ -1,0 +1,8 @@
+{% set period = setono_sylius_out_of_office_active_period() %}
+
+{% if period is not null and period.checkoutDisabled %}
+    <div class="setono-out-of-office-notice setono-out-of-office-notice--blocked"
+         style="margin: 1rem 0; padding: 1rem 1.25rem; background: #f8d7da; color: #842029; border-radius: .25rem; font-weight: 600;">
+        {{ period.checkoutMessage|default('setono_sylius_out_of_office.shop.checkout_disabled'|trans) }}
+    </div>
+{% endif %}

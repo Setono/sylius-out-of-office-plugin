@@ -2,6 +2,13 @@
     "source": {
         "directories": [
             "src"
+        ],
+        "excludes": [
+            "Migrations",
+            "Fixture",
+            "Doctrine",
+            "DependencyInjection",
+            "Form"
         ]
     },
     "logs": {

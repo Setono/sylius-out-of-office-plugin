@@ -1,0 +1,11 @@
+setono_sylius_out_of_office:
+    out_of_office_period:
+        name:
+            not_blank: 'Kérjük, adjon meg egy nevet.'
+        ends_at:
+            greater_than_or_equal_starts_at: 'A befejezés dátumának meg kell egyeznie a kezdés dátumával, vagy annál későbbinek kell lennie.'
+        placements:
+            at_least_one: 'Engedélyezzen legalább egy elhelyezést (felső sáv, termékoldal vagy pénztár).'
+    out_of_office_period_translation:
+        message:
+            at_least_one: 'Kérjük, töltsön ki legalább egy üzenetet.'

@@ -1,0 +1,3 @@
+setono_sylius_out_of_office:
+    checkout:
+        disabled: 'Objednávání je momentálně pozastaveno, protože obchod je nepřítomen.'

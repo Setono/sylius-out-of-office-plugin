@@ -1,0 +1,11 @@
+setono_sylius_out_of_office:
+    out_of_office_period:
+        name:
+            not_blank: 'Zadejte prosím název.'
+        ends_at:
+            greater_than_or_equal_starts_at: 'Datum konce musí být stejné nebo pozdější než datum začátku.'
+        placements:
+            at_least_one: 'Povolte alespoň jedno umístění (horní lišta, stránka produktu nebo pokladna).'
+    out_of_office_period_translation:
+        message:
+            at_least_one: 'Vyplňte prosím alespoň jednu zprávu.'

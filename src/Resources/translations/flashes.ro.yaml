@@ -1,0 +1,3 @@
+setono_sylius_out_of_office:
+    checkout:
+        disabled: 'Plasarea comenzilor este suspendată momentan deoarece magazinul este absent.'

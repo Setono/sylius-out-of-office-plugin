@@ -1,0 +1,11 @@
+setono_sylius_out_of_office:
+    out_of_office_period:
+        name:
+            not_blank: 'Podaj nazwę.'
+        ends_at:
+            greater_than_or_equal_starts_at: 'Data zakończenia musi być taka sama lub późniejsza niż data rozpoczęcia.'
+        placements:
+            at_least_one: 'Włącz co najmniej jedno umiejscowienie (górny pasek, strona produktu lub zamówienie).'
+    out_of_office_period_translation:
+        message:
+            at_least_one: 'Wypełnij co najmniej jedną wiadomość.'

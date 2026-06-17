@@ -1,0 +1,3 @@
+setono_sylius_out_of_office:
+    checkout:
+        disabled: 'Оформлення замовлень наразі призупинено, оскільки магазин відсутній.'

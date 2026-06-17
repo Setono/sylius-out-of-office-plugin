@@ -1,0 +1,47 @@
+{% set period = setono_sylius_out_of_office_active_period() %}
+
+{% if period is not null and period.showOnTopBar and period.topBarMessage is not empty %}
+    {% set cookie_key = setono_sylius_out_of_office_dismissal_cookie_key(period) %}
+
+    {% if not period.dismissible or app.request.cookies.get(cookie_key) is empty %}
+        <div class="setono-out-of-office-bar" data-setono-out-of-office-bar
+             style="position: relative; padding: .75rem 2.5rem; text-align: center; background: #fff3cd; color: #664d03;">
+            <span class="setono-out-of-office-bar__message">{{ period.topBarMessage }}</span>
+
+            {% if period.dismissible %}
+                <button type="button"
+                        class="setono-out-of-office-bar__close"
+                        data-setono-out-of-office-dismiss
+                        data-cookie-key="{{ cookie_key }}"
+                        data-cookie-max-age="{{ setono_sylius_out_of_office_dismissal_cookie_max_age() }}"
+                        aria-label="{{ 'setono_sylius_out_of_office.shop.dismiss'|trans }}"
+                        style="position: absolute; top: 50%; right: 1rem; transform: translateY(-50%); border: 0; background: none; font-size: 1.25rem; line-height: 1; cursor: pointer; color: inherit;">&times;</button>
+
+                <script>
+                    (function () {
+                        var bar = document.querySelector('[data-setono-out-of-office-bar]');
+                        if (null === bar) {
+                            return;
+                        }
+
+                        var button = bar.querySelector('[data-setono-out-of-office-dismiss]');
+                        if (null === button) {
+                            return;
+                        }
+
+                        button.addEventListener('click', function () {
+                            var key = button.getAttribute('data-cookie-key');
+                            var maxAge = button.getAttribute('data-cookie-max-age');
+
+                            document.cookie = key + '=1; path=/; max-age=' + maxAge + '; SameSite=Lax';
+
+                            if (null !== bar.parentNode) {
+                                bar.parentNode.removeChild(bar);
+                            }
+                        });
+                    })();
+                </script>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endif %}

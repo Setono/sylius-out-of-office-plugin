@@ -1,0 +1,5 @@
+{% for channel in data %}
+    <span class="ui label">{{ channel.name }}</span>
+{% else %}
+    <span class="ui basic label">{{ 'setono_sylius_out_of_office.ui.all_channels'|trans }}</span>
+{% endfor %}

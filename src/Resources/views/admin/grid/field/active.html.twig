@@ -1,0 +1,5 @@
+{% if setono_sylius_out_of_office_period_is_active(data) %}
+    <span class="ui green label">{{ 'setono_sylius_out_of_office.ui.active_now'|trans }}</span>
+{% else %}
+    <span class="ui label">{{ 'setono_sylius_out_of_office.ui.inactive'|trans }}</span>
+{% endif %}
