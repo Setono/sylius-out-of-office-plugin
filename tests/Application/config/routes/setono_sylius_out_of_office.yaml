@@ -1,0 +1,2 @@
+setono_sylius_out_of_office:
+    resource: "@SetonoSyliusOutOfOfficePlugin/Resources/config/routes.yaml"
