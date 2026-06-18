@@ -146,10 +146,11 @@ final class OutOfOfficePeriodExampleFactory extends AbstractExampleFactory imple
      */
     private function getLocales(): iterable
     {
-        /** @var array<array-key, LocaleInterface> $locales */
-        $locales = $this->localeRepository->findAll();
+        foreach ($this->localeRepository->findAll() as $locale) {
+            if (!$locale instanceof LocaleInterface) {
+                continue;
+            }
 
-        foreach ($locales as $locale) {
             $code = $locale->getCode();
             if (null !== $code) {
                 yield $code;
