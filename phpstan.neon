@@ -29,8 +29,3 @@ parameters:
         -
             identifier: doctrine.associationType
             path: src/Model/OutOfOfficePeriod.php
-        # Sylius' EntityRepository pins RepositoryInterface<ResourceInterface>, which conflicts with
-        # our precise RepositoryInterface<OutOfOfficePeriodInterface> on the concrete repository.
-        -
-            identifier: generics.interfaceConflict
-            path: src/Doctrine/ORM/OutOfOfficePeriodRepository.php

@@ -9,7 +9,8 @@ use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Resource\Doctrine\Persistence\RepositoryInterface;
 
 /**
- * @extends RepositoryInterface<OutOfOfficePeriodInterface>
+ * @template T of OutOfOfficePeriodInterface
+ * @extends RepositoryInterface<T>
  */
 interface OutOfOfficePeriodRepositoryInterface extends RepositoryInterface
 {

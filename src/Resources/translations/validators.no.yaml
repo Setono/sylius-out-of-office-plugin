@@ -1,7 +1,5 @@
 setono_sylius_out_of_office:
     out_of_office_period:
-        name:
-            not_blank: 'Vennligst angi et navn.'
         ends_at:
             greater_than_or_equal_starts_at: 'Sluttdatoen må være den samme som eller senere enn startdatoen.'
         placements:

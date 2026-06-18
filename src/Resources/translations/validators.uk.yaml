@@ -1,7 +1,5 @@
 setono_sylius_out_of_office:
     out_of_office_period:
-        name:
-            not_blank: 'Будь ласка, введіть назву.'
         ends_at:
             greater_than_or_equal_starts_at: 'Дата завершення має бути такою самою або пізнішою за дату початку.'
         placements:

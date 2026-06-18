@@ -17,13 +17,8 @@ final class ActiveOutOfOfficePeriodProvider implements ActiveOutOfOfficePeriodPr
     private readonly LoggerInterface $logger;
 
     /**
-     * Memoizes the resolved period per channel for the lifetime of the request, since the provider
-     * is hit up to three times per page render (top bar, product page, checkout).
-     *
-     * @var array<string, OutOfOfficePeriodInterface|null>
+     * @param OutOfOfficePeriodRepositoryInterface<OutOfOfficePeriodInterface> $repository
      */
-    private array $cache = [];
-
     public function __construct(
         private readonly OutOfOfficePeriodRepositoryInterface $repository,
         private readonly ChannelContextInterface $channelContext,
@@ -38,14 +33,7 @@ final class ActiveOutOfOfficePeriodProvider implements ActiveOutOfOfficePeriodPr
         try {
             $channel ??= $this->channelContext->getChannel();
 
-            $cacheKey = (string) $channel->getCode();
-            if (array_key_exists($cacheKey, $this->cache)) {
-                return $this->cache[$cacheKey];
-            }
-
-            $periods = $this->repository->findActive($channel, $this->clock->now());
-
-            return $this->cache[$cacheKey] = $this->resolve($periods);
+            return $this->resolve($this->repository->findActive($channel, $this->clock->now()));
         } catch (\Throwable $e) {
             // A misconfiguration or DB blip must never white-screen the shop.
             $this->logger->error('Unable to resolve the active out of office period.', ['exception' => $e]);

@@ -19,7 +19,7 @@ final class ActiveOutOfOfficePeriodProviderTest extends TestCase
 {
     use ProphecyTrait;
 
-    /** @var ObjectProphecy<OutOfOfficePeriodRepositoryInterface> */
+    /** @var ObjectProphecy<OutOfOfficePeriodRepositoryInterface<OutOfOfficePeriodInterface>> */
     private ObjectProphecy $repository;
 
     /** @var ObjectProphecy<ChannelContextInterface> */
@@ -29,7 +29,10 @@ final class ActiveOutOfOfficePeriodProviderTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->repository = $this->prophesize(OutOfOfficePeriodRepositoryInterface::class);
+        /** @var ObjectProphecy<OutOfOfficePeriodRepositoryInterface<OutOfOfficePeriodInterface>> $repository */
+        $repository = $this->prophesize(OutOfOfficePeriodRepositoryInterface::class);
+        $this->repository = $repository;
+
         $this->channelContext = $this->prophesize(ChannelContextInterface::class);
         $this->clock = new MockClock(new \DateTimeImmutable('2026-06-17 12:00:00'));
     }
@@ -147,26 +150,6 @@ final class ActiveOutOfOfficePeriodProviderTest extends TestCase
             ->willReturn([$bounded->reveal(), $openEnded->reveal()]);
 
         self::assertSame($bounded->reveal(), $this->createProvider()->getActivePeriod($channel));
-    }
-
-    /**
-     * @test
-     */
-    public function it_memoizes_the_result_per_channel(): void
-    {
-        $channel = $this->channel();
-
-        $period = $this->prophesize(OutOfOfficePeriodInterface::class);
-        $period->getStartsAt()->willReturn(null);
-
-        $this->repository->findActive($channel, Argument::type(\DateTimeInterface::class))
-            ->willReturn([$period->reveal()])
-            ->shouldBeCalledOnce();
-
-        $provider = $this->createProvider();
-
-        self::assertSame($period->reveal(), $provider->getActivePeriod($channel));
-        self::assertSame($period->reveal(), $provider->getActivePeriod($channel));
     }
 
     /**

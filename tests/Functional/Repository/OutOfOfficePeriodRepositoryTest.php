@@ -79,9 +79,12 @@ final class OutOfOfficePeriodRepositoryTest extends DatabaseTestCase
         return array_values(array_map(static fn (OutOfOfficePeriodInterface $period) => $period->getId(), $periods));
     }
 
+    /**
+     * @return OutOfOfficePeriodRepositoryInterface<OutOfOfficePeriodInterface>
+     */
     private function repository(): OutOfOfficePeriodRepositoryInterface
     {
-        /** @var OutOfOfficePeriodRepositoryInterface $repository */
+        /** @var OutOfOfficePeriodRepositoryInterface<OutOfOfficePeriodInterface> $repository */
         $repository = self::getContainer()->get('setono_sylius_out_of_office.repository.out_of_office_period');
 
         return $repository;

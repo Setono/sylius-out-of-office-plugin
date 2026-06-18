@@ -9,6 +9,10 @@ use Setono\SyliusOutOfOfficePlugin\Repository\OutOfOfficePeriodRepositoryInterfa
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Channel\Model\ChannelInterface;
 
+/**
+ * @template T of OutOfOfficePeriodInterface
+ * @implements OutOfOfficePeriodRepositoryInterface<T>
+ */
 class OutOfOfficePeriodRepository extends EntityRepository implements OutOfOfficePeriodRepositoryInterface
 {
     public function findActive(ChannelInterface $channel, \DateTimeInterface $now): array

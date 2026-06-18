@@ -13,7 +13,7 @@
     </parameters>
 
     <services>
-        <!-- Provider -->
+        <!-- Provider (+ request-scoped caching decorator) -->
         <service id="setono_sylius_out_of_office.provider.active_out_of_office_period"
                  class="Setono\SyliusOutOfOfficePlugin\Provider\ActiveOutOfOfficePeriodProvider">
             <argument type="service" id="setono_sylius_out_of_office.repository.out_of_office_period" />
@@ -21,15 +21,24 @@
             <argument type="service" id="Symfony\Component\Clock\ClockInterface" />
             <argument type="service" id="logger" on-invalid="null" />
         </service>
+        <service id="setono_sylius_out_of_office.provider.cached_active_out_of_office_period"
+                 class="Setono\SyliusOutOfOfficePlugin\Provider\CachedActiveOutOfOfficePeriodProvider"
+                 decorates="setono_sylius_out_of_office.provider.active_out_of_office_period">
+            <argument type="service" id="setono_sylius_out_of_office.provider.cached_active_out_of_office_period.inner" />
+        </service>
         <service id="Setono\SyliusOutOfOfficePlugin\Provider\ActiveOutOfOfficePeriodProviderInterface"
                  alias="setono_sylius_out_of_office.provider.active_out_of_office_period" />
 
-        <!-- Twig extension -->
+        <!-- Twig extension + lazy-loaded runtime -->
         <service id="setono_sylius_out_of_office.twig.extension"
                  class="Setono\SyliusOutOfOfficePlugin\Twig\OutOfOfficeExtension">
+            <tag name="twig.extension" />
+        </service>
+        <service id="setono_sylius_out_of_office.twig.runtime"
+                 class="Setono\SyliusOutOfOfficePlugin\Twig\OutOfOfficeRuntime">
             <argument type="service" id="setono_sylius_out_of_office.provider.active_out_of_office_period" />
             <argument type="service" id="Symfony\Component\Clock\ClockInterface" />
-            <tag name="twig.extension" />
+            <tag name="twig.runtime" />
         </service>
 
         <!-- Phase 6: block checkout completion when the active period uses the "disable" behavior -->

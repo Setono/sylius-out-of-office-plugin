@@ -1,7 +1,5 @@
 setono_sylius_out_of_office:
     out_of_office_period:
-        name:
-            not_blank: 'Introduza um nome.'
         ends_at:
             greater_than_or_equal_starts_at: 'A data de fim deve ser igual ou posterior à data de início.'
         placements:
