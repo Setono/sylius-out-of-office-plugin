@@ -170,11 +170,11 @@ This plugin is released under the [MIT License](LICENSE).
 
 [ico-version]: https://poser.pugx.org/setono/sylius-out-of-office-plugin/v/stable
 [ico-license]: https://poser.pugx.org/setono/sylius-out-of-office-plugin/license
-[ico-github-actions]: https://github.com/Setono/SyliusOutOfOfficePlugin/workflows/build/badge.svg
-[ico-code-coverage]: https://codecov.io/gh/Setono/SyliusOutOfOfficePlugin/branch/master/graph/badge.svg
-[ico-infection]: https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2FSetono%2FSyliusOutOfOfficePlugin%2Fmaster
+[ico-github-actions]: https://github.com/Setono/sylius-out-of-office-plugin/actions/workflows/build.yaml/badge.svg
+[ico-code-coverage]: https://codecov.io/gh/Setono/sylius-out-of-office-plugin/branch/master/graph/badge.svg
+[ico-infection]: https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2FSetono%2Fsylius-out-of-office-plugin%2Fmaster
 
 [link-packagist]: https://packagist.org/packages/setono/sylius-out-of-office-plugin
-[link-github-actions]: https://github.com/Setono/SyliusOutOfOfficePlugin/actions
-[link-code-coverage]: https://codecov.io/gh/Setono/SyliusOutOfOfficePlugin
-[link-infection]: https://dashboard.stryker-mutator.io/reports/github.com/Setono/SyliusOutOfOfficePlugin/master
+[link-github-actions]: https://github.com/Setono/sylius-out-of-office-plugin/actions/workflows/build.yaml
+[link-code-coverage]: https://codecov.io/gh/Setono/sylius-out-of-office-plugin
+[link-infection]: https://dashboard.stryker-mutator.io/reports/github.com/Setono/sylius-out-of-office-plugin/master
