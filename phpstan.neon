@@ -29,3 +29,9 @@ parameters:
         -
             identifier: doctrine.associationType
             path: src/Model/OutOfOfficePeriod.php
+        # Lazy Twig runtime callables ([Runtime::class, 'method']) only satisfy TwigFunction's
+        # `callable` parameter type from twig 3.12+; twig 2 / older twig 3 still resolve the function
+        # at runtime via the runtime loader, so ignore the static-analysis-only type mismatch.
+        -
+            identifier: argument.type
+            path: src/Twig/OutOfOfficeExtension.php
