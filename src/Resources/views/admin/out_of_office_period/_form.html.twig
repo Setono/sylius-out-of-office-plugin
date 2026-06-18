@@ -1,0 +1,21 @@
+{% from '@SyliusAdmin/Macro/translationForm.html.twig' import translationForm %}
+
+<div class="ui two column stackable grid">
+    <div class="column">
+        <div class="ui segment">
+            {{ form_errors(form) }}
+            {{ form_row(form.name) }}
+            {{ form_row(form.enabled) }}
+            {{ form_row(form.startsAt) }}
+            {{ form_row(form.endsAt) }}
+            {{ form_row(form.channels) }}
+            {{ form_row(form.showOnTopBar) }}
+            {{ form_row(form.showOnProductPage) }}
+            {{ form_row(form.showAtCheckout) }}
+            {{ form_row(form.checkoutBehavior) }}
+        </div>
+    </div>
+    <div class="column">
+        {{ translationForm(form.translations) }}
+    </div>
+</div>

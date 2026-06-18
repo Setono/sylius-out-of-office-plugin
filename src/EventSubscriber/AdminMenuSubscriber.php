@@ -28,7 +28,7 @@ final class AdminMenuSubscriber implements EventSubscriberInterface
                 'route' => 'setono_sylius_out_of_office_admin_out_of_office_period_index',
             ])
             ->setLabel('setono_sylius_out_of_office.ui.out_of_office')
-            ->setLabelAttribute('icon', 'tabler:beach')
+            ->setLabelAttribute('icon', 'plane')
         ;
     }
 }

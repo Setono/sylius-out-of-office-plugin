@@ -44,6 +44,7 @@ final class OutOfOfficePeriodType extends AbstractResourceType
             ->add('channels', ChannelChoiceType::class, [
                 'required' => false,
                 'multiple' => true,
+                'expanded' => true,
                 'label' => 'setono_sylius_out_of_office.form.out_of_office_period.channels',
                 'help' => 'setono_sylius_out_of_office.form.out_of_office_period.channels_help',
             ])

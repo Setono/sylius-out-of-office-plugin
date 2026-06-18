@@ -93,8 +93,6 @@ final class SetonoSyliusOutOfOfficeExtension extends AbstractResourceExtension i
                                 'options' => ['fields' => ['channels']],
                                 'form_options' => [
                                     'class' => '%sylius.model.channel.class%',
-                                    'multiple' => true,
-                                    'choice_label' => 'name',
                                 ],
                             ],
                         ],

@@ -36,7 +36,7 @@ final class AdminMenuSubscriberTest extends TestCase
         $item = $configuration->getChild('setono_sylius_out_of_office_period');
         self::assertNotNull($item);
         self::assertSame('setono_sylius_out_of_office.ui.out_of_office', $item->getLabel());
-        self::assertSame('tabler:beach', $item->getLabelAttribute('icon'));
+        self::assertSame('plane', $item->getLabelAttribute('icon'));
     }
 
     /**

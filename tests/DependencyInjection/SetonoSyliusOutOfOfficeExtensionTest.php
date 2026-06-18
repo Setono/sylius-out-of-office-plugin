@@ -35,7 +35,7 @@ final class SetonoSyliusOutOfOfficeExtensionTest extends AbstractExtensionTestCa
         $this->load();
 
         $this->assertContainerBuilderHasService(
-            'setono_sylius_out_of_office.provider.active_out_of_office_period',
+            \Setono\SyliusOutOfOfficePlugin\Provider\ActiveOutOfOfficePeriodProvider::class,
         );
     }
 }
