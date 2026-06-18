@@ -31,6 +31,9 @@ This plugin targets **Sylius 1.x**, **Symfony `^6.4`** and **PHP ≥ 8.1**.
 composer require setono/sylius-out-of-office-plugin
 ```
 
+> The plugin is currently in **alpha**. If your project's `minimum-stability` is `stable`, require it
+> explicitly as a pre-release: `composer require setono/sylius-out-of-office-plugin:^1.0@alpha`.
+
 ### 2. Register the bundle
 
 ```php
