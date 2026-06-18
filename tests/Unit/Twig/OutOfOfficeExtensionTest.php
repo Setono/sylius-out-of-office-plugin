@@ -12,15 +12,17 @@ final class OutOfOfficeExtensionTest extends TestCase
     /**
      * @test
      */
-    public function it_exposes_three_prefixed_twig_functions(): void
+    public function it_exposes_the_prefixed_twig_functions(): void
     {
-        $functions = (new OutOfOfficeExtension())->getFunctions();
-
-        self::assertCount(3, $functions);
-
-        foreach ($functions as $function) {
-            // TwigFunction::getName() is untyped on twig 2, so cast for cross-version static analysis.
-            self::assertStringStartsWith('setono_sylius_out_of_office_', (string) $function->getName());
+        $names = [];
+        foreach ((new OutOfOfficeExtension())->getFunctions() as $function) {
+            $names[] = $function->getName();
         }
+
+        self::assertSame([
+            'setono_sylius_out_of_office_active_period',
+            'setono_sylius_out_of_office_is_active',
+            'setono_sylius_out_of_office_period_is_active',
+        ], $names);
     }
 }
