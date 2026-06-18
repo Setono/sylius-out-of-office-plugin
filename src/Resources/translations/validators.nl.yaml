@@ -1,0 +1,9 @@
+setono_sylius_out_of_office:
+    out_of_office_period:
+        ends_at:
+            greater_than_or_equal_starts_at: 'De einddatum moet gelijk zijn aan of later dan de begindatum.'
+        placements:
+            at_least_one: 'Schakel ten minste één plaatsing in (bovenbalk, productpagina of afrekenen).'
+    out_of_office_period_translation:
+        message:
+            at_least_one: 'Vul ten minste één bericht in.'

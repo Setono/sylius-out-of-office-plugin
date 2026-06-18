@@ -77,6 +77,12 @@ Examples:
 
 ## Architecture Overview
 
+### Persistence & migrations
+Do **not** ship Doctrine migrations in this plugin. Migrations belong to the application that installs
+the plugin — bundling them in a plugin causes conflicts across apps with differing schema histories.
+Ship only the Doctrine mapping (`src/Resources/config/doctrine/`); consumers generate their own
+migration with `bin/console doctrine:migrations:diff` (or update the schema directly).
+
 ### Translations
 The plugin provides multilingual support through translation files in `src/Resources/translations/`:
 

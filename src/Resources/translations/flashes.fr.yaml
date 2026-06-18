@@ -1,0 +1,3 @@
+setono_sylius_out_of_office:
+    checkout:
+        disabled: 'Les commandes sont actuellement suspendues car la boutique est absente.'

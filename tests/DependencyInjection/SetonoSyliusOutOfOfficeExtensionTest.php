@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Setono\SyliusOutOfOfficePlugin\Tests\DependencyInjection;
 
-use Setono\SyliusOutOfOfficePlugin\DependencyInjection\SetonoSyliusOutOfOfficeExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
+use Setono\SyliusOutOfOfficePlugin\DependencyInjection\SetonoSyliusOutOfOfficeExtension;
+use Setono\SyliusOutOfOfficePlugin\Model\OutOfOfficePeriod;
 
-/**
- * See examples of tests and configuration options here: https://github.com/SymfonyTest/SymfonyDependencyInjectionTest
- */
 final class SetonoSyliusOutOfOfficeExtensionTest extends AbstractExtensionTestCase
 {
     protected function getContainerExtensions(): array
@@ -20,22 +18,24 @@ final class SetonoSyliusOutOfOfficeExtensionTest extends AbstractExtensionTestCa
     }
 
     /**
-     * @return array<string, mixed>
+     * @test
      */
-    protected function getMinimalConfiguration(): array
+    public function it_registers_the_out_of_office_period_resource(): void
     {
-        return [
-            'option' => 'option_value',
-        ];
+        $this->load();
+
+        $this->assertContainerBuilderHasParameter('setono_sylius_out_of_office.model.out_of_office_period.class', OutOfOfficePeriod::class);
     }
 
     /**
      * @test
      */
-    public function after_loading_the_correct_parameter_has_been_set(): void
+    public function it_registers_the_provider(): void
     {
         $this->load();
 
-        $this->assertContainerBuilderHasParameter('setono_sylius_out_of_office.option', 'option_value');
+        $this->assertContainerBuilderHasService(
+            \Setono\SyliusOutOfOfficePlugin\Provider\ActiveOutOfOfficePeriodProvider::class,
+        );
     }
 }

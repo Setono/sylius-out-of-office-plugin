@@ -1,0 +1,9 @@
+setono_sylius_out_of_office:
+    out_of_office_period:
+        ends_at:
+            greater_than_or_equal_starts_at: 'Slutdatumet måste vara samma som eller senare än startdatumet.'
+        placements:
+            at_least_one: 'Aktivera minst en placering (toppfält, produktsida eller kassa).'
+    out_of_office_period_translation:
+        message:
+            at_least_one: 'Fyll i minst ett meddelande.'

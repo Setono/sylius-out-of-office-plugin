@@ -1,1 +1,15 @@
-# TODO Add your admin routes here
+setono_sylius_out_of_office_admin_out_of_office_period:
+    resource: |
+        alias: setono_sylius_out_of_office.out_of_office_period
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: setono_sylius_out_of_office_period
+        vars:
+            all:
+                subheader: setono_sylius_out_of_office.ui.manage_out_of_office_periods
+                templates:
+                    form: "@SetonoSyliusOutOfOfficePlugin/admin/out_of_office_period/_form.html.twig"
+            index:
+                icon: plane
+    type: sylius.resource

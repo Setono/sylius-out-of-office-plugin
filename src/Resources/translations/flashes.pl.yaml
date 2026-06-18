@@ -1,0 +1,3 @@
+setono_sylius_out_of_office:
+    checkout:
+        disabled: 'Składanie zamówień jest obecnie wstrzymane, ponieważ sklep jest nieobecny.'

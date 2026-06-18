@@ -1,0 +1,9 @@
+setono_sylius_out_of_office:
+    out_of_office_period:
+        ends_at:
+            greater_than_or_equal_starts_at: 'Päättymispäivän on oltava sama tai myöhempi kuin alkamispäivä.'
+        placements:
+            at_least_one: 'Ota käyttöön vähintään yksi sijainti (yläpalkki, tuotesivu tai kassa).'
+    out_of_office_period_translation:
+        message:
+            at_least_one: 'Täytä vähintään yksi viesti.'

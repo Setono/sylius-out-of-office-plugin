@@ -1,7 +1,76 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services"
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="setono_sylius_out_of_office.out_of_office_period.validation_groups" type="collection">
+            <parameter>setono_sylius_out_of_office</parameter>
+        </parameter>
+        <parameter key="setono_sylius_out_of_office.out_of_office_period_translation.validation_groups" type="collection">
+            <parameter>setono_sylius_out_of_office</parameter>
+        </parameter>
+    </parameters>
+
     <services>
-        <!-- Put your services here -->
+        <!-- Provider (+ request-scoped caching decorator over the interface) -->
+        <service id="Setono\SyliusOutOfOfficePlugin\Provider\ActiveOutOfOfficePeriodProvider">
+            <argument type="service" id="setono_sylius_out_of_office.repository.out_of_office_period" />
+            <argument type="service" id="Sylius\Component\Channel\Context\ChannelContextInterface" />
+            <argument type="service" id="Symfony\Component\Clock\ClockInterface" />
+            <argument type="service" id="logger" on-invalid="null" />
+        </service>
+        <service id="Setono\SyliusOutOfOfficePlugin\Provider\ActiveOutOfOfficePeriodProviderInterface"
+                 alias="Setono\SyliusOutOfOfficePlugin\Provider\ActiveOutOfOfficePeriodProvider" />
+        <service id="Setono\SyliusOutOfOfficePlugin\Provider\CachedActiveOutOfOfficePeriodProvider"
+                 decorates="Setono\SyliusOutOfOfficePlugin\Provider\ActiveOutOfOfficePeriodProviderInterface">
+            <argument type="service" id="Setono\SyliusOutOfOfficePlugin\Provider\CachedActiveOutOfOfficePeriodProvider.inner" />
+        </service>
+
+        <!-- Twig extension + lazy-loaded runtime -->
+        <service id="Setono\SyliusOutOfOfficePlugin\Twig\OutOfOfficeExtension">
+            <tag name="twig.extension" />
+        </service>
+        <service id="Setono\SyliusOutOfOfficePlugin\Twig\OutOfOfficeRuntime">
+            <argument type="service" id="Setono\SyliusOutOfOfficePlugin\Provider\ActiveOutOfOfficePeriodProviderInterface" />
+            <argument type="service" id="Symfony\Component\Clock\ClockInterface" />
+            <tag name="twig.runtime" />
+        </service>
+
+        <!-- Phase 6: block checkout completion when the active period uses the "disable" behavior -->
+        <service id="Setono\SyliusOutOfOfficePlugin\EventListener\CheckoutGuardListener">
+            <argument type="service" id="Setono\SyliusOutOfOfficePlugin\Provider\ActiveOutOfOfficePeriodProviderInterface" />
+            <argument type="service" id="router" />
+            <tag name="kernel.event_listener" event="sylius.order.pre_complete" method="check" />
+        </service>
+
+        <!-- Admin menu -->
+        <service id="Setono\SyliusOutOfOfficePlugin\EventSubscriber\AdminMenuSubscriber">
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <!-- Forms -->
+        <service id="Setono\SyliusOutOfOfficePlugin\Form\Type\OutOfOfficePeriodType">
+            <argument>%setono_sylius_out_of_office.model.out_of_office_period.class%</argument>
+            <argument>%setono_sylius_out_of_office.out_of_office_period.validation_groups%</argument>
+            <tag name="form.type" />
+        </service>
+        <service id="Setono\SyliusOutOfOfficePlugin\Form\Type\OutOfOfficePeriodTranslationType">
+            <argument>%setono_sylius_out_of_office.model.out_of_office_period_translation.class%</argument>
+            <argument>%setono_sylius_out_of_office.out_of_office_period_translation.validation_groups%</argument>
+            <tag name="form.type" />
+        </service>
+
+        <!-- Fixtures -->
+        <service id="Setono\SyliusOutOfOfficePlugin\Fixture\Factory\OutOfOfficePeriodExampleFactory">
+            <argument type="service" id="setono_sylius_out_of_office.factory.out_of_office_period" />
+            <argument type="service" id="sylius.repository.locale" />
+            <argument type="service" id="sylius.repository.channel" />
+        </service>
+        <service id="Setono\SyliusOutOfOfficePlugin\Fixture\OutOfOfficePeriodFixture">
+            <argument type="service" id="setono_sylius_out_of_office.manager.out_of_office_period" />
+            <argument type="service" id="Setono\SyliusOutOfOfficePlugin\Fixture\Factory\OutOfOfficePeriodExampleFactory" />
+            <tag name="sylius_fixtures.fixture" />
+        </service>
     </services>
 </container>
