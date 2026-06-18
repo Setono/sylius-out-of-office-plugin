@@ -16,7 +16,7 @@ final class SetonoSyliusOutOfOfficeExtension extends AbstractResourceExtension i
     public function load(array $configs, ContainerBuilder $container): void
     {
         /** @var array{resources: array<string, mixed>} $config */
-        $config = $this->processConfiguration(new Configuration(), $configs);
+        $config = $this->processConfiguration($this->getConfiguration([], $container), $configs);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
