@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Setono\SyliusOutOfOfficePlugin\DependencyInjection;
 
 use Sylius\Bundle\ResourceBundle\DependencyInjection\Extension\AbstractResourceExtension;
+use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
@@ -14,12 +15,13 @@ final class SetonoSyliusOutOfOfficeExtension extends AbstractResourceExtension i
 {
     public function load(array $configs, ContainerBuilder $container): void
     {
-        /** @var array{driver: string, resources: array<string, mixed>} $config */
+        /** @var array{resources: array<string, mixed>} $config */
         $config = $this->processConfiguration(new Configuration(), $configs);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
-        $this->registerResources('setono_sylius_out_of_office', $config['driver'], $config['resources'], $container);
+        // This plugin only supports the Doctrine ORM driver.
+        $this->registerResources('setono_sylius_out_of_office', SyliusResourceBundle::DRIVER_DOCTRINE_ORM, $config['resources'], $container);
 
         $loader->load('services.xml');
     }

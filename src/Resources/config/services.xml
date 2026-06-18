@@ -13,19 +13,19 @@
     </parameters>
 
     <services>
-        <!-- Provider (+ request-scoped caching decorator) -->
+        <!-- Provider (+ request-scoped caching decorator over the interface) -->
         <service id="Setono\SyliusOutOfOfficePlugin\Provider\ActiveOutOfOfficePeriodProvider">
             <argument type="service" id="setono_sylius_out_of_office.repository.out_of_office_period" />
             <argument type="service" id="Sylius\Component\Channel\Context\ChannelContextInterface" />
             <argument type="service" id="Symfony\Component\Clock\ClockInterface" />
             <argument type="service" id="logger" on-invalid="null" />
         </service>
-        <service id="Setono\SyliusOutOfOfficePlugin\Provider\CachedActiveOutOfOfficePeriodProvider"
-                 decorates="Setono\SyliusOutOfOfficePlugin\Provider\ActiveOutOfOfficePeriodProvider">
-            <argument type="service" id="Setono\SyliusOutOfOfficePlugin\Provider\CachedActiveOutOfOfficePeriodProvider.inner" />
-        </service>
         <service id="Setono\SyliusOutOfOfficePlugin\Provider\ActiveOutOfOfficePeriodProviderInterface"
                  alias="Setono\SyliusOutOfOfficePlugin\Provider\ActiveOutOfOfficePeriodProvider" />
+        <service id="Setono\SyliusOutOfOfficePlugin\Provider\CachedActiveOutOfOfficePeriodProvider"
+                 decorates="Setono\SyliusOutOfOfficePlugin\Provider\ActiveOutOfOfficePeriodProviderInterface">
+            <argument type="service" id="Setono\SyliusOutOfOfficePlugin\Provider\CachedActiveOutOfOfficePeriodProvider.inner" />
+        </service>
 
         <!-- Twig extension + lazy-loaded runtime -->
         <service id="Setono\SyliusOutOfOfficePlugin\Twig\OutOfOfficeExtension">
