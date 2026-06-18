@@ -24,21 +24,11 @@
         <service id="Setono\SyliusOutOfOfficePlugin\Provider\ActiveOutOfOfficePeriodProviderInterface"
                  alias="setono_sylius_out_of_office.provider.active_out_of_office_period" />
 
-        <!-- Dismissal cookie key generator -->
-        <service id="setono_sylius_out_of_office.dismissal.cookie_key_generator"
-                 class="Setono\SyliusOutOfOfficePlugin\Dismissal\DismissalCookieKeyGenerator">
-            <argument>%setono_sylius_out_of_office.dismissal.cookie_prefix%</argument>
-        </service>
-        <service id="Setono\SyliusOutOfOfficePlugin\Dismissal\DismissalCookieKeyGeneratorInterface"
-                 alias="setono_sylius_out_of_office.dismissal.cookie_key_generator" />
-
         <!-- Twig extension -->
         <service id="setono_sylius_out_of_office.twig.extension"
                  class="Setono\SyliusOutOfOfficePlugin\Twig\OutOfOfficeExtension">
             <argument type="service" id="setono_sylius_out_of_office.provider.active_out_of_office_period" />
-            <argument type="service" id="setono_sylius_out_of_office.dismissal.cookie_key_generator" />
             <argument type="service" id="Symfony\Component\Clock\ClockInterface" />
-            <argument>%setono_sylius_out_of_office.dismissal.cookie_max_age%</argument>
             <tag name="twig.extension" />
         </service>
 
@@ -51,9 +41,9 @@
         </service>
 
         <!-- Admin menu -->
-        <service id="setono_sylius_out_of_office.listener.admin_menu"
-                 class="Setono\SyliusOutOfOfficePlugin\Menu\AdminMenuListener">
-            <tag name="kernel.event_listener" event="sylius.menu.admin.main" method="addAdminMenuItem" />
+        <service id="setono_sylius_out_of_office.event_subscriber.admin_menu"
+                 class="Setono\SyliusOutOfOfficePlugin\EventSubscriber\AdminMenuSubscriber">
+            <tag name="kernel.event_subscriber" />
         </service>
 
         <!-- Forms -->

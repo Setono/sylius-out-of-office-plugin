@@ -59,11 +59,6 @@ final class OutOfOfficePeriodType extends AbstractResourceType
                 'required' => false,
                 'label' => 'setono_sylius_out_of_office.form.out_of_office_period.show_at_checkout',
             ])
-            ->add('dismissible', CheckboxType::class, [
-                'required' => false,
-                'label' => 'setono_sylius_out_of_office.form.out_of_office_period.dismissible',
-                'help' => 'setono_sylius_out_of_office.form.out_of_office_period.dismissible_help',
-            ])
             ->add('checkoutBehavior', ChoiceType::class, [
                 'label' => 'setono_sylius_out_of_office.form.out_of_office_period.checkout_behavior',
                 'help' => 'setono_sylius_out_of_office.form.out_of_office_period.checkout_behavior_help',

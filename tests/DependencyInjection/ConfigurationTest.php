@@ -24,15 +24,4 @@ final class ConfigurationTest extends TestCase
     {
         $this->assertConfigurationIsValid([[]]);
     }
-
-    /**
-     * @test
-     */
-    public function it_does_not_allow_a_blank_cookie_prefix(): void
-    {
-        $this->assertPartialConfigurationIsInvalid(
-            [['dismissal' => ['cookie_prefix' => '']]],
-            'dismissal.cookie_prefix',
-        );
-    }
 }

@@ -2,15 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusOutOfOfficePlugin\Tests\Unit\Menu;
+namespace Setono\SyliusOutOfOfficePlugin\Tests\Unit\EventSubscriber;
 
 use Knp\Menu\MenuFactory;
 use PHPUnit\Framework\TestCase;
-use Setono\SyliusOutOfOfficePlugin\Menu\AdminMenuListener;
+use Setono\SyliusOutOfOfficePlugin\EventSubscriber\AdminMenuSubscriber;
 use Sylius\Bundle\UiBundle\Menu\Event\MenuBuilderEvent;
 
-final class AdminMenuListenerTest extends TestCase
+final class AdminMenuSubscriberTest extends TestCase
 {
+    /**
+     * @test
+     */
+    public function it_subscribes_to_the_admin_main_menu_event(): void
+    {
+        self::assertArrayHasKey('sylius.menu.admin.main', AdminMenuSubscriber::getSubscribedEvents());
+    }
+
     /**
      * @test
      */
@@ -20,7 +28,7 @@ final class AdminMenuListenerTest extends TestCase
         $menu = $factory->createItem('root');
         $menu->addChild('configuration');
 
-        (new AdminMenuListener())->addAdminMenuItem(new MenuBuilderEvent($factory, $menu));
+        (new AdminMenuSubscriber())->addAdminMenuItem(new MenuBuilderEvent($factory, $menu));
 
         $configuration = $menu->getChild('configuration');
         self::assertNotNull($configuration);
@@ -39,7 +47,7 @@ final class AdminMenuListenerTest extends TestCase
         $factory = new MenuFactory();
         $menu = $factory->createItem('root');
 
-        (new AdminMenuListener())->addAdminMenuItem(new MenuBuilderEvent($factory, $menu));
+        (new AdminMenuSubscriber())->addAdminMenuItem(new MenuBuilderEvent($factory, $menu));
 
         self::assertCount(0, $menu->getChildren());
     }

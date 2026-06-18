@@ -29,8 +29,6 @@ setono_sylius_out_of_office:
             show_on_top_bar: 'Tonen in de bovenbalk'
             show_on_product_page: 'Tonen op productpagina''s'
             show_at_checkout: 'Tonen bij het afrekenen'
-            dismissible: 'Sluitbaar'
-            dismissible_help: 'Klanten toestaan de bovenbalk te sluiten.'
             checkout_behavior: 'Afrekengedrag'
             checkout_behavior_help: 'Of klanten nog steeds bestellingen kunnen voltooien terwijl deze periode actief is.'
             checkout_behavior_choices:
@@ -44,5 +42,4 @@ setono_sylius_out_of_office:
             checkout_message: 'Bericht bij het afrekenen'
             checkout_message_help: 'Wordt getoond bij het afrekenen. Valt terug op het bericht in de bovenbalk wanneer leeg.'
     shop:
-        dismiss: 'Sluiten'
         checkout_disabled: 'Bestellen is tijdelijk gepauzeerd.'

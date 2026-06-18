@@ -35,8 +35,6 @@ class OutOfOfficePeriod implements OutOfOfficePeriodInterface
 
     protected bool $showAtCheckout = true;
 
-    protected bool $dismissible = true;
-
     protected string $checkoutBehavior;
 
     /** @var Collection<array-key, ChannelInterface> */
@@ -115,16 +113,6 @@ class OutOfOfficePeriod implements OutOfOfficePeriodInterface
     public function setShowAtCheckout(bool $showAtCheckout): void
     {
         $this->showAtCheckout = $showAtCheckout;
-    }
-
-    public function isDismissible(): bool
-    {
-        return $this->dismissible;
-    }
-
-    public function setDismissible(bool $dismissible): void
-    {
-        $this->dismissible = $dismissible;
     }
 
     public function getCheckoutBehavior(): string

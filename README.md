@@ -17,7 +17,6 @@ message, and customers are informed that orders placed now will ship when you ar
   different messaging per channel.
 - A master `enabled` switch independent of the dates, so you can flip a period on/off instantly.
 - Per-placement messages (top bar / product page / checkout) with sensible fallbacks, all translatable.
-- A dismissible top bar (the dismissal is remembered with a cookie that resets when you edit the period).
 - Optional **checkout blocking** for periods where you genuinely cannot ship (off by default).
 - Storefront integration through `sylius_ui` template events, so it works across all Sylius 1.x minors
   with **zero configuration**.
@@ -54,21 +53,14 @@ setono_sylius_out_of_office:
 
 ### 4. Update the database schema
 
-The plugin ships a migration under `src/Migrations`. Register its path and run the migrations:
-
-```yaml
-# config/packages/doctrine_migrations.yaml
-
-doctrine_migrations:
-    migrations_paths:
-        'Setono\SyliusOutOfOfficePlugin\Migrations': '@SetonoSyliusOutOfOfficePlugin/Migrations'
-```
+Generate a migration for your application and run it:
 
 ```bash
+bin/console doctrine:migrations:diff
 bin/console doctrine:migrations:migrate
 ```
 
-Alternatively, generate a migration tailored to your app with `bin/console doctrine:migrations:diff`.
+The plugin deliberately does not ship its own migration — migrations belong to the application.
 
 That's it — an **Out of office** entry appears in the admin under *Configuration*.
 
@@ -111,18 +103,11 @@ sylius_ui:
 
 ## Configuration
 
-```yaml
-# config/packages/setono_sylius_out_of_office.yaml
-
-setono_sylius_out_of_office:
-    dismissal:
-        cookie_prefix: 'setono_out_of_office_dismissed' # cookie name prefix for the dismissible top bar
-        cookie_max_age: 2592000                         # dismissal lifetime in seconds (30 days)
-```
-
 The resource model classes are overridable through the standard Sylius `resources` configuration, e.g.:
 
 ```yaml
+# config/packages/setono_sylius_out_of_office.yaml
+
 setono_sylius_out_of_office:
     resources:
         out_of_office_period:
@@ -135,10 +120,6 @@ setono_sylius_out_of_office:
 - **Templates, grid and form** follow standard Sylius override rules — drop a file in
   `templates/bundles/SetonoSyliusOutOfOfficePlugin/` to restyle the bar/notices. The markup uses stable
   hook classes (`setono-out-of-office-bar`, `setono-out-of-office-notice`) and minimal inline styling.
-- **Dismissal cookie policy** is a swappable service: decorate or replace
-  `Setono\SyliusOutOfOfficePlugin\Dismissal\DismissalCookieKeyGeneratorInterface` (the default keys on
-  the period id + its `updatedAt`, so edits re-show a dismissed bar; key on the id only to keep
-  dismissals across edits).
 - **Checkout behavior**: each period has a `checkoutBehavior` of `allow` (default — informational only)
   or `disable` (blocks order completion via a `sylius.order.pre_complete` guard and shows a notice).
 

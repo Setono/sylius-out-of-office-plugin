@@ -14,7 +14,6 @@
         <field name="showOnTopBar" column="show_on_top_bar" type="boolean" />
         <field name="showOnProductPage" column="show_on_product_page" type="boolean" />
         <field name="showAtCheckout" column="show_at_checkout" type="boolean" />
-        <field name="dismissible" column="dismissible" type="boolean" />
         <field name="checkoutBehavior" column="checkout_behavior" type="string" />
         <field name="enabled" column="enabled" type="boolean" />
 

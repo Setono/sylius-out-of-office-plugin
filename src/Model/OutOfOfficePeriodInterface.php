@@ -36,10 +36,6 @@ interface OutOfOfficePeriodInterface extends ResourceInterface, ChannelsAwareInt
 
     public function setShowAtCheckout(bool $showAtCheckout): void;
 
-    public function isDismissible(): bool;
-
-    public function setDismissible(bool $dismissible): void;
-
     public function getCheckoutBehavior(): string;
 
     public function setCheckoutBehavior(string $checkoutBehavior): void;

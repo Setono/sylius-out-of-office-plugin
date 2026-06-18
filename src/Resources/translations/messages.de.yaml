@@ -29,8 +29,6 @@ setono_sylius_out_of_office:
             show_on_top_bar: 'In der oberen Leiste anzeigen'
             show_on_product_page: 'Auf Produktseiten anzeigen'
             show_at_checkout: 'An der Kasse anzeigen'
-            dismissible: 'Schließbar'
-            dismissible_help: 'Kunden erlauben, die obere Leiste zu schließen.'
             checkout_behavior: 'Verhalten an der Kasse'
             checkout_behavior_help: 'Ob Kunden während dieses Zeitraums noch Bestellungen abschließen können.'
             checkout_behavior_choices:
@@ -44,5 +42,4 @@ setono_sylius_out_of_office:
             checkout_message: 'Nachricht an der Kasse'
             checkout_message_help: 'Wird an der Kasse angezeigt. Greift auf die Nachricht der oberen Leiste zurück, wenn leer.'
     shop:
-        dismiss: 'Schließen'
         checkout_disabled: 'Bestellungen sind vorübergehend ausgesetzt.'

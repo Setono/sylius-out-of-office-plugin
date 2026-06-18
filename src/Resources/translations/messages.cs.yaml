@@ -29,8 +29,6 @@ setono_sylius_out_of_office:
             show_on_top_bar: 'Zobrazit v horní liště'
             show_on_product_page: 'Zobrazit na stránkách produktů'
             show_at_checkout: 'Zobrazit u pokladny'
-            dismissible: 'Lze zavřít'
-            dismissible_help: 'Umožnit zákazníkům zavřít horní lištu.'
             checkout_behavior: 'Chování pokladny'
             checkout_behavior_help: 'Zda mohou zákazníci stále dokončovat objednávky, když je toto období aktivní.'
             checkout_behavior_choices:
@@ -44,5 +42,4 @@ setono_sylius_out_of_office:
             checkout_message: 'Zpráva u pokladny'
             checkout_message_help: 'Zobrazuje se u pokladny. Pokud je prázdná, použije se zpráva z horní lišty.'
     shop:
-        dismiss: 'Zavřít'
         checkout_disabled: 'Objednávání je dočasně pozastaveno.'

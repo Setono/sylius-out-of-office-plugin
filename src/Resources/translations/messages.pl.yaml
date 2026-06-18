@@ -29,8 +29,6 @@ setono_sylius_out_of_office:
             show_on_top_bar: 'Pokaż na górnym pasku'
             show_on_product_page: 'Pokaż na stronach produktów'
             show_at_checkout: 'Pokaż przy zamówieniu'
-            dismissible: 'Można zamknąć'
-            dismissible_help: 'Pozwól klientom zamknąć górny pasek.'
             checkout_behavior: 'Zachowanie przy zamówieniu'
             checkout_behavior_help: 'Określa, czy klienci mogą nadal składać zamówienia, gdy ten okres jest aktywny.'
             checkout_behavior_choices:
@@ -44,5 +42,4 @@ setono_sylius_out_of_office:
             checkout_message: 'Wiadomość przy zamówieniu'
             checkout_message_help: 'Wyświetlana przy zamówieniu. Gdy puste, używana jest wiadomość z górnego paska.'
     shop:
-        dismiss: 'Zamknij'
         checkout_disabled: 'Składanie zamówień jest tymczasowo wstrzymane.'

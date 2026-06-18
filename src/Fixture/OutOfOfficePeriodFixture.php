@@ -25,7 +25,6 @@ class OutOfOfficePeriodFixture extends AbstractResourceFixture
                 ->booleanNode('show_on_top_bar')->end()
                 ->booleanNode('show_on_product_page')->end()
                 ->booleanNode('show_at_checkout')->end()
-                ->booleanNode('dismissible')->end()
                 ->scalarNode('checkout_behavior')->end()
                 ->scalarNode('top_bar_message')->end()
                 ->scalarNode('product_message')->end()

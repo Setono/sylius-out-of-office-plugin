@@ -9,21 +9,17 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-use Symfony\Component\Yaml\Yaml;
 
 final class SetonoSyliusOutOfOfficeExtension extends AbstractResourceExtension implements PrependExtensionInterface
 {
     public function load(array $configs, ContainerBuilder $container): void
     {
-        /** @var array{driver: string, dismissal: array{cookie_prefix: string, cookie_max_age: int}, resources: array<string, mixed>} $config */
+        /** @var array{driver: string, resources: array<string, mixed>} $config */
         $config = $this->processConfiguration(new Configuration(), $configs);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
         $this->registerResources('setono_sylius_out_of_office', $config['driver'], $config['resources'], $container);
-
-        $container->setParameter('setono_sylius_out_of_office.dismissal.cookie_prefix', $config['dismissal']['cookie_prefix']);
-        $container->setParameter('setono_sylius_out_of_office.dismissal.cookie_max_age', $config['dismissal']['cookie_max_age']);
 
         $loader->load('services.xml');
     }
@@ -31,9 +27,88 @@ final class SetonoSyliusOutOfOfficeExtension extends AbstractResourceExtension i
     public function prepend(ContainerBuilder $container): void
     {
         if ($container->hasExtension('sylius_grid')) {
-            /** @var array{sylius_grid?: array<string, mixed>} $gridConfig */
-            $gridConfig = Yaml::parseFile(__DIR__ . '/../Resources/config/grids/setono_sylius_out_of_office_period.yaml');
-            $container->prependExtensionConfig('sylius_grid', $gridConfig['sylius_grid'] ?? []);
+            $container->prependExtensionConfig('sylius_grid', [
+                'grids' => [
+                    'setono_sylius_out_of_office_period' => [
+                        'driver' => [
+                            'name' => 'doctrine/orm',
+                            'options' => [
+                                'class' => '%setono_sylius_out_of_office.model.out_of_office_period.class%',
+                            ],
+                        ],
+                        'sorting' => ['startsAt' => 'desc'],
+                        'fields' => [
+                            'name' => [
+                                'type' => 'string',
+                                'label' => 'setono_sylius_out_of_office.ui.name',
+                                'sortable' => null,
+                            ],
+                            'channels' => [
+                                'type' => 'twig',
+                                'label' => 'setono_sylius_out_of_office.ui.channels',
+                                'options' => [
+                                    'template' => '@SetonoSyliusOutOfOfficePlugin/admin/grid/field/channels.html.twig',
+                                ],
+                            ],
+                            'active' => [
+                                'type' => 'twig',
+                                'label' => 'setono_sylius_out_of_office.ui.active_now',
+                                'path' => '.',
+                                'options' => [
+                                    'template' => '@SetonoSyliusOutOfOfficePlugin/admin/grid/field/active.html.twig',
+                                ],
+                            ],
+                            'startsAt' => [
+                                'type' => 'datetime',
+                                'label' => 'setono_sylius_out_of_office.ui.starts_at',
+                                'sortable' => null,
+                            ],
+                            'endsAt' => [
+                                'type' => 'datetime',
+                                'label' => 'setono_sylius_out_of_office.ui.ends_at',
+                                'sortable' => null,
+                            ],
+                            'enabled' => [
+                                'type' => 'twig',
+                                'label' => 'setono_sylius_out_of_office.ui.enabled',
+                                'sortable' => null,
+                                'options' => [
+                                    'template' => '@SyliusUi/Grid/Field/enabled.html.twig',
+                                ],
+                            ],
+                        ],
+                        'filters' => [
+                            'name' => [
+                                'type' => 'string',
+                                'label' => 'setono_sylius_out_of_office.ui.name',
+                                'options' => ['fields' => ['name']],
+                            ],
+                            'enabled' => [
+                                'type' => 'boolean',
+                                'label' => 'setono_sylius_out_of_office.ui.enabled',
+                            ],
+                            'channel' => [
+                                'type' => 'entity',
+                                'label' => 'setono_sylius_out_of_office.ui.channel',
+                                'options' => ['fields' => ['channels']],
+                                'form_options' => [
+                                    'class' => '%sylius.model.channel.class%',
+                                    'multiple' => true,
+                                    'choice_label' => 'name',
+                                ],
+                            ],
+                        ],
+                        'actions' => [
+                            'main' => ['create' => ['type' => 'create']],
+                            'item' => [
+                                'update' => ['type' => 'update'],
+                                'delete' => ['type' => 'delete'],
+                            ],
+                            'bulk' => ['delete' => ['type' => 'delete']],
+                        ],
+                    ],
+                ],
+            ]);
         }
 
         if ($container->hasExtension('sylius_ui')) {

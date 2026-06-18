@@ -29,8 +29,6 @@ setono_sylius_out_of_office:
             show_on_top_bar: 'Näytä yläpalkissa'
             show_on_product_page: 'Näytä tuotesivuilla'
             show_at_checkout: 'Näytä kassalla'
-            dismissible: 'Suljettavissa'
-            dismissible_help: 'Salli asiakkaiden sulkea yläpalkki.'
             checkout_behavior: 'Kassan toiminta'
             checkout_behavior_help: 'Voivatko asiakkaat edelleen tehdä tilauksia tämän jakson ollessa aktiivinen.'
             checkout_behavior_choices:
@@ -44,5 +42,4 @@ setono_sylius_out_of_office:
             checkout_message: 'Kassan viesti'
             checkout_message_help: 'Näytetään kassalla. Käyttää yläpalkin viestiä, jos tämä on tyhjä.'
     shop:
-        dismiss: 'Sulje'
         checkout_disabled: 'Tilaaminen on tilapäisesti keskeytetty.'

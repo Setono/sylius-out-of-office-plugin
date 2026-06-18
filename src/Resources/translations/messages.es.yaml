@@ -29,8 +29,6 @@ setono_sylius_out_of_office:
             show_on_top_bar: 'Mostrar en la barra superior'
             show_on_product_page: 'Mostrar en las páginas de producto'
             show_at_checkout: 'Mostrar en el pago'
-            dismissible: 'Se puede cerrar'
-            dismissible_help: 'Permitir a los clientes cerrar la barra superior.'
             checkout_behavior: 'Comportamiento del pago'
             checkout_behavior_help: 'Si los clientes aún pueden completar pedidos mientras este periodo está activo.'
             checkout_behavior_choices:
@@ -44,5 +42,4 @@ setono_sylius_out_of_office:
             checkout_message: 'Mensaje del pago'
             checkout_message_help: 'Se muestra en el pago. Usa el mensaje de la barra superior cuando está vacío.'
     shop:
-        dismiss: 'Cerrar'
         checkout_disabled: 'Los pedidos están pausados temporalmente.'

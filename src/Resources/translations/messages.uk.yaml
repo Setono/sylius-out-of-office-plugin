@@ -29,8 +29,6 @@ setono_sylius_out_of_office:
             show_on_top_bar: 'Показувати у верхній панелі'
             show_on_product_page: 'Показувати на сторінках товарів'
             show_at_checkout: 'Показувати під час оформлення замовлення'
-            dismissible: 'Можна закрити'
-            dismissible_help: 'Дозволити клієнтам закривати верхню панель.'
             checkout_behavior: 'Поведінка під час оформлення замовлення'
             checkout_behavior_help: 'Чи можуть клієнти все ще завершувати замовлення, поки цей період активний.'
             checkout_behavior_choices:
@@ -44,5 +42,4 @@ setono_sylius_out_of_office:
             checkout_message: 'Повідомлення під час оформлення замовлення'
             checkout_message_help: 'Показується під час оформлення замовлення. Якщо порожнє, використовується повідомлення верхньої панелі.'
     shop:
-        dismiss: 'Закрити'
         checkout_disabled: 'Оформлення замовлень тимчасово призупинено.'

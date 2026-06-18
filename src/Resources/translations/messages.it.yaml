@@ -29,8 +29,6 @@ setono_sylius_out_of_office:
             show_on_top_bar: 'Mostra nella barra superiore'
             show_on_product_page: 'Mostra nelle pagine prodotto'
             show_at_checkout: 'Mostra al checkout'
-            dismissible: 'Chiudibile'
-            dismissible_help: 'Consenti ai clienti di chiudere la barra superiore.'
             checkout_behavior: 'Comportamento del checkout'
             checkout_behavior_help: 'Indica se i clienti possono ancora completare gli ordini mentre questo periodo è attivo.'
             checkout_behavior_choices:
@@ -44,5 +42,4 @@ setono_sylius_out_of_office:
             checkout_message: 'Messaggio del checkout'
             checkout_message_help: 'Mostrato al checkout. Utilizza il messaggio della barra superiore quando è vuoto.'
     shop:
-        dismiss: 'Chiudi'
         checkout_disabled: 'Gli ordini sono temporaneamente sospesi.'

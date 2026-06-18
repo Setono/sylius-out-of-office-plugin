@@ -29,8 +29,6 @@ setono_sylius_out_of_office:
             show_on_top_bar: 'Vis i topbjælken'
             show_on_product_page: 'Vis på produktsider'
             show_at_checkout: 'Vis i kassen'
-            dismissible: 'Kan lukkes'
-            dismissible_help: 'Tillad kunder at lukke topbjælken.'
             checkout_behavior: 'Kasseadfærd'
             checkout_behavior_help: 'Om kunder stadig kan gennemføre ordrer, mens denne periode er aktiv.'
             checkout_behavior_choices:
@@ -44,5 +42,4 @@ setono_sylius_out_of_office:
             checkout_message: 'Besked i kassen'
             checkout_message_help: 'Vises i kassen. Falder tilbage til topbjælkens besked, når den er tom.'
     shop:
-        dismiss: 'Luk'
         checkout_disabled: 'Bestilling er midlertidigt sat på pause.'

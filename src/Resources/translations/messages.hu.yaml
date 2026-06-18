@@ -29,8 +29,6 @@ setono_sylius_out_of_office:
             show_on_top_bar: 'Megjelenítés a felső sávban'
             show_on_product_page: 'Megjelenítés a termékoldalakon'
             show_at_checkout: 'Megjelenítés a pénztárnál'
-            dismissible: 'Bezárható'
-            dismissible_help: 'Engedélyezze az ügyfeleknek a felső sáv bezárását.'
             checkout_behavior: 'Pénztár viselkedése'
             checkout_behavior_help: 'Befejezhetik-e az ügyfelek a rendeléseket, amíg ez az időszak aktív.'
             checkout_behavior_choices:
@@ -44,5 +42,4 @@ setono_sylius_out_of_office:
             checkout_message: 'Pénztár üzenete'
             checkout_message_help: 'A pénztárnál jelenik meg. Ha üres, a felső sáv üzenetét használja.'
     shop:
-        dismiss: 'Bezárás'
         checkout_disabled: 'A rendelés átmenetileg szünetel.'

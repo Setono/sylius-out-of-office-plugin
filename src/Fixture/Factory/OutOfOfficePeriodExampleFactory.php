@@ -55,7 +55,6 @@ final class OutOfOfficePeriodExampleFactory extends AbstractExampleFactory imple
          *     show_on_top_bar: bool,
          *     show_on_product_page: bool,
          *     show_at_checkout: bool,
-         *     dismissible: bool,
          *     checkout_behavior: string,
          *     top_bar_message: string|null,
          *     product_message: string|null,
@@ -74,7 +73,6 @@ final class OutOfOfficePeriodExampleFactory extends AbstractExampleFactory imple
         $period->setShowOnTopBar($options['show_on_top_bar']);
         $period->setShowOnProductPage($options['show_on_product_page']);
         $period->setShowAtCheckout($options['show_at_checkout']);
-        $period->setDismissible($options['dismissible']);
         $period->setCheckoutBehavior($options['checkout_behavior']);
 
         foreach ($this->getLocales() as $localeCode) {
@@ -112,8 +110,6 @@ final class OutOfOfficePeriodExampleFactory extends AbstractExampleFactory imple
             ->setAllowedTypes('show_on_product_page', 'bool')
             ->setDefault('show_at_checkout', true)
             ->setAllowedTypes('show_at_checkout', 'bool')
-            ->setDefault('dismissible', true)
-            ->setAllowedTypes('dismissible', 'bool')
             ->setDefault('checkout_behavior', OutOfOfficeCheckoutBehavior::Allow->value)
             ->setAllowedTypes('checkout_behavior', 'string')
             ->setDefault('top_bar_message', fn (Options $options): string => $this->faker->sentence())

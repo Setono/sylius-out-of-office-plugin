@@ -29,8 +29,6 @@ setono_sylius_out_of_office:
             show_on_top_bar: 'Show on the top bar'
             show_on_product_page: 'Show on product pages'
             show_at_checkout: 'Show at checkout'
-            dismissible: 'Dismissible'
-            dismissible_help: 'Allow customers to close the top bar.'
             checkout_behavior: 'Checkout behavior'
             checkout_behavior_help: 'Whether customers can still complete orders while this period is active.'
             checkout_behavior_choices:
@@ -44,5 +42,4 @@ setono_sylius_out_of_office:
             checkout_message: 'Checkout message'
             checkout_message_help: 'Shown at checkout. Falls back to the top bar message when empty.'
     shop:
-        dismiss: 'Dismiss'
         checkout_disabled: 'Ordering is temporarily paused.'

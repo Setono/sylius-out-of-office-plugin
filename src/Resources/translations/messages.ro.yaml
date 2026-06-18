@@ -29,8 +29,6 @@ setono_sylius_out_of_office:
             show_on_top_bar: 'Afișează în bara superioară'
             show_on_product_page: 'Afișează pe paginile de produs'
             show_at_checkout: 'Afișează la finalizarea comenzii'
-            dismissible: 'Se poate închide'
-            dismissible_help: 'Permite clienților să închidă bara superioară.'
             checkout_behavior: 'Comportamentul la finalizarea comenzii'
             checkout_behavior_help: 'Dacă clienții pot finaliza în continuare comenzile cât timp această perioadă este activă.'
             checkout_behavior_choices:
@@ -44,5 +42,4 @@ setono_sylius_out_of_office:
             checkout_message: 'Mesajul de la finalizarea comenzii'
             checkout_message_help: 'Afișat la finalizarea comenzii. Revine la mesajul barei superioare când este gol.'
     shop:
-        dismiss: 'Închide'
         checkout_disabled: 'Plasarea comenzilor este suspendată temporar.'

@@ -10,7 +10,6 @@ sylius_fixtures:
                                 enabled: true
                                 starts_at: '-1 day'
                                 ends_at: '+14 days'
-                                dismissible: true
                                 checkout_behavior: 'allow'
                                 top_bar_message: "We're on holiday — orders placed now will ship when we're back."
                                 product_message: 'Heads up: we are away, so dispatch is delayed.'

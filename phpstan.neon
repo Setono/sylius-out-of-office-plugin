@@ -7,7 +7,6 @@ parameters:
 
     excludePaths:
         - tests/Application/*
-        - src/Migrations/*
 
     bootstrapFiles:
         - vendor/autoload.php

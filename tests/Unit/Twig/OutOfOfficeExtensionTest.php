@@ -7,7 +7,6 @@ namespace Setono\SyliusOutOfOfficePlugin\Tests\Unit\Twig;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
-use Setono\SyliusOutOfOfficePlugin\Dismissal\DismissalCookieKeyGeneratorInterface;
 use Setono\SyliusOutOfOfficePlugin\Model\OutOfOfficePeriodInterface;
 use Setono\SyliusOutOfOfficePlugin\Provider\ActiveOutOfOfficePeriodProviderInterface;
 use Setono\SyliusOutOfOfficePlugin\Twig\OutOfOfficeExtension;
@@ -20,26 +19,17 @@ final class OutOfOfficeExtensionTest extends TestCase
     /** @var ObjectProphecy<ActiveOutOfOfficePeriodProviderInterface> */
     private ObjectProphecy $provider;
 
-    /** @var ObjectProphecy<DismissalCookieKeyGeneratorInterface> */
-    private ObjectProphecy $cookieKeyGenerator;
-
     private MockClock $clock;
 
     protected function setUp(): void
     {
         $this->provider = $this->prophesize(ActiveOutOfOfficePeriodProviderInterface::class);
-        $this->cookieKeyGenerator = $this->prophesize(DismissalCookieKeyGeneratorInterface::class);
         $this->clock = new MockClock(new \DateTimeImmutable('2026-06-17 12:00:00'));
     }
 
     private function createExtension(): OutOfOfficeExtension
     {
-        return new OutOfOfficeExtension(
-            $this->provider->reveal(),
-            $this->cookieKeyGenerator->reveal(),
-            $this->clock,
-            1234,
-        );
+        return new OutOfOfficeExtension($this->provider->reveal(), $this->clock);
     }
 
     /**
@@ -103,24 +93,5 @@ final class OutOfOfficeExtensionTest extends TestCase
         $period->isActiveAt($this->clock->now())->willThrow(new \RuntimeException('boom'));
 
         self::assertFalse($this->createExtension()->isPeriodActive($period->reveal()));
-    }
-
-    /**
-     * @test
-     */
-    public function it_delegates_the_dismissal_cookie_key(): void
-    {
-        $period = $this->prophesize(OutOfOfficePeriodInterface::class);
-        $this->cookieKeyGenerator->generate($period->reveal())->willReturn('the_key');
-
-        self::assertSame('the_key', $this->createExtension()->getDismissalCookieKey($period->reveal()));
-    }
-
-    /**
-     * @test
-     */
-    public function it_returns_the_dismissal_cookie_max_age(): void
-    {
-        self::assertSame(1234, $this->createExtension()->getDismissalCookieMaxAge());
     }
 }

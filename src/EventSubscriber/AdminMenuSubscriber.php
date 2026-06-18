@@ -2,12 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusOutOfOfficePlugin\Menu;
+namespace Setono\SyliusOutOfOfficePlugin\EventSubscriber;
 
 use Sylius\Bundle\UiBundle\Menu\Event\MenuBuilderEvent;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-final class AdminMenuListener
+final class AdminMenuSubscriber implements EventSubscriberInterface
 {
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            'sylius.menu.admin.main' => 'addAdminMenuItem',
+        ];
+    }
+
     public function addAdminMenuItem(MenuBuilderEvent $event): void
     {
         $configuration = $event->getMenu()->getChild('configuration');
