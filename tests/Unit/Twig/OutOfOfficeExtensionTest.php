@@ -19,7 +19,8 @@ final class OutOfOfficeExtensionTest extends TestCase
         self::assertCount(3, $functions);
 
         foreach ($functions as $function) {
-            self::assertStringStartsWith('setono_sylius_out_of_office_', $function->getName());
+            // TwigFunction::getName() is untyped on twig 2, so cast for cross-version static analysis.
+            self::assertStringStartsWith('setono_sylius_out_of_office_', (string) $function->getName());
         }
     }
 }
